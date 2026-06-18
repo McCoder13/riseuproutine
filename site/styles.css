@@ -11,6 +11,8 @@
   --gold: #e8b75a;
   --blue: #6b8fb8;
   --shadow: 0 18px 45px rgba(24, 50, 45, 0.12);
+  --greeting-font: "Bricolage Grotesque", ui-sans-serif, system-ui, sans-serif;
+  --clock-font: "Space Grotesk", ui-sans-serif, system-ui, sans-serif;
   font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
 }
 
@@ -33,6 +35,7 @@ body {
 
 button,
 input,
+select,
 textarea {
   font: inherit;
 }
@@ -540,8 +543,10 @@ h2 {
   margin: 0;
   font-size: clamp(2.75rem, 15vw, 5.2rem);
   line-height: 0.9;
-  font-weight: 800;
+  font-family: var(--clock-font);
+  font-weight: 700;
   letter-spacing: 0;
+  font-variant-numeric: tabular-nums;
 }
 
 #launchTitle {
@@ -549,6 +554,8 @@ h2 {
   white-space: nowrap;
   overflow-wrap: normal;
   font-size: clamp(2.45rem, 11.5vw, 4.2rem);
+  font-family: var(--greeting-font);
+  font-weight: 800;
 }
 
 .focus-line,
@@ -566,6 +573,66 @@ h2 {
   grid-template-columns: 1fr;
   gap: 10px;
   margin-top: 12px;
+}
+
+.font-picker {
+  width: min(100%, 330px);
+  display: grid;
+  gap: 6px;
+  margin-top: 2px;
+  color: rgba(23, 33, 31, 0.68);
+  font-size: 0.76rem;
+  font-weight: 800;
+  text-align: left;
+}
+
+.font-picker span {
+  padding-left: 2px;
+}
+
+.font-picker select {
+  min-height: 46px;
+  width: 100%;
+  border: 1px solid rgba(23, 33, 31, 0.16);
+  border-radius: 8px;
+  padding: 0 40px 0 12px;
+  color: var(--ink);
+  background: rgba(255, 255, 255, 0.72);
+  box-shadow: 0 10px 26px rgba(24, 50, 45, 0.08);
+  appearance: none;
+  background-image:
+    linear-gradient(45deg, transparent 50%, currentColor 50%),
+    linear-gradient(135deg, currentColor 50%, transparent 50%);
+  background-position:
+    calc(100% - 19px) 20px,
+    calc(100% - 13px) 20px;
+  background-size: 6px 6px;
+  background-repeat: no-repeat;
+}
+
+body.font-fraunces-space {
+  --greeting-font: "Fraunces", ui-serif, Georgia, serif;
+  --clock-font: "Space Grotesk", ui-sans-serif, system-ui, sans-serif;
+}
+
+body.font-dm-space-mono {
+  --greeting-font: "DM Serif Display", ui-serif, Georgia, serif;
+  --clock-font: "Space Mono", ui-monospace, "SFMono-Regular", Consolas, monospace;
+}
+
+body.font-bricolage-space {
+  --greeting-font: "Bricolage Grotesque", ui-sans-serif, system-ui, sans-serif;
+  --clock-font: "Space Grotesk", ui-sans-serif, system-ui, sans-serif;
+}
+
+body.font-fredoka-space-mono {
+  --greeting-font: "Fredoka", ui-sans-serif, system-ui, sans-serif;
+  --clock-font: "Space Mono", ui-monospace, "SFMono-Regular", Consolas, monospace;
+}
+
+body.font-baloo-space {
+  --greeting-font: "Baloo 2", ui-sans-serif, system-ui, sans-serif;
+  --clock-font: "Space Grotesk", ui-sans-serif, system-ui, sans-serif;
 }
 
 .primary-button,

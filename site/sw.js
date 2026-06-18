@@ -1,4 +1,4 @@
-const CACHE_NAME = "morning-flow-v2";
+const CACHE_NAME = "morning-flow-v4";
 const ASSETS = [
   "./",
   "./index.html",

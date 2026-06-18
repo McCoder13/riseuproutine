@@ -11,6 +11,9 @@
     <link rel="manifest" href="manifest.webmanifest">
     <link rel="apple-touch-icon" href="icon.svg">
     <link rel="icon" href="icon.svg" type="image/svg+xml">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Bricolage+Grotesque:wght@600;700;800&family=DM+Serif+Display&family=Fraunces:opsz,wght,SOFT,WONK@9..144,600..900,50..100,0..1&family=Fredoka:wght@500;600;700&family=Space+Grotesk:wght@500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
   </head>
   <body>
@@ -52,6 +55,16 @@
             <div class="primary-actions">
               <button class="primary-button" id="beginMorningButton" type="button">Begin Morning Routine</button>
             </div>
+            <label class="font-picker" for="fontPairSelect">
+              <span>Font preview</span>
+              <select id="fontPairSelect">
+                <option value="bricolage-space" selected>Bricolage + Space Grotesk</option>
+                <option value="fraunces-space">Fraunces + Space Grotesk</option>
+                <option value="dm-space-mono">DM Serif + Space Mono</option>
+                <option value="fredoka-space-mono">Fredoka + Space Mono</option>
+                <option value="baloo-space">Baloo 2 + Space Grotesk</option>
+              </select>
+            </label>
           </div>
         </section>
 

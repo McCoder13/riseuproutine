@@ -93,11 +93,21 @@ const storageKeys = {
   notes: "morningFlow.notes",
   wakeTime: "morningFlow.wakeTime",
   morningDone: "morningFlow.morningDone",
-  eveningDone: "morningFlow.eveningDone"
+  eveningDone: "morningFlow.eveningDone",
+  fontPair: "morningFlow.fontPair"
 };
+
+const fontPairClasses = [
+  "font-fraunces-space",
+  "font-dm-space-mono",
+  "font-bricolage-space",
+  "font-fredoka-space-mono",
+  "font-baloo-space"
+];
 
 const elements = {
   clockText: document.querySelector("#clockText"),
+  fontPairSelect: document.querySelector("#fontPairSelect"),
   focusLine: document.querySelector("#focusLine"),
   launchTitle: document.querySelector("#launchTitle"),
   beginMorningButton: document.querySelector("#beginMorningButton"),
@@ -148,6 +158,13 @@ function updateSceneMode(now = new Date()) {
   const hour = now.getHours();
   const isNight = hour >= 20 || hour < 5;
   document.body.classList.toggle("is-night", isNight);
+}
+
+function applyFontPair(pair) {
+  const selectedPair = pair || "bricolage-space";
+  document.body.classList.remove(...fontPairClasses);
+  document.body.classList.add(`font-${selectedPair}`);
+  elements.fontPairSelect.value = selectedPair;
 }
 
 function setActiveView(viewId) {
@@ -244,10 +261,15 @@ function resetRoutineProgress() {
 function restoreLocalData() {
   elements.notesInput.value = localStorage.getItem(storageKeys.notes) || "";
   elements.wakeTimeInput.value = localStorage.getItem(storageKeys.wakeTime) || "06:30";
+  applyFontPair(localStorage.getItem(storageKeys.fontPair));
 }
 
 function wireEvents() {
   elements.beginMorningButton.addEventListener("click", () => startRoutine("morning"));
+  elements.fontPairSelect.addEventListener("change", () => {
+    localStorage.setItem(storageKeys.fontPair, elements.fontPairSelect.value);
+    applyFontPair(elements.fontPairSelect.value);
+  });
   elements.skipTaskButton.addEventListener("click", advanceTask);
   elements.completeTaskButton.addEventListener("click", advanceTask);
   elements.finishRoutineButton.addEventListener("click", () => setActiveView("dashboardView"));
