@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <meta name="theme-color" content="#eef7f4">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-title" content="Morning Flow">
+    <title>Morning Flow</title>
+    <link rel="manifest" href="manifest.webmanifest">
+    <link rel="apple-touch-icon" href="icon.svg">
+    <link rel="icon" href="icon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <div class="morning-scene" aria-hidden="true">
+      <div class="scene-sky">
+        <div class="scene-stars">
+          <span class="star star-one"></span>
+          <span class="star star-two"></span>
+          <span class="star star-three"></span>
+          <span class="star star-four"></span>
+          <span class="star star-five"></span>
+        </div>
+        <div class="scene-sun"></div>
+        <div class="scene-moon"></div>
+        <div class="cloud cloud-one"></div>
+        <div class="cloud cloud-two"></div>
+        <div class="cloud cloud-three"></div>
+        <div class="bird bird-one"></div>
+        <div class="bird bird-two"></div>
+        <div class="bird bird-three"></div>
+      </div>
+      <div class="scene-mountains">
+        <div class="mountain mountain-back"></div>
+        <div class="mountain mountain-mid"></div>
+        <div class="mountain mountain-front"></div>
+      </div>
+      <div class="scene-water">
+        <div class="boat"></div>
+      </div>
+    </div>
+
+    <div class="app-shell">
+      <main>
+        <section class="view is-active" id="launchView" aria-labelledby="launchTitle">
+          <div class="launch-content">
+            <h1 id="launchTitle">Good morning</h1>
+            <p class="clock" id="clockText">--:--</p>
+            <p class="focus-line" id="focusLine">Start with quiet, then move one step at a time.</p>
+            <div class="primary-actions">
+              <button class="primary-button" id="beginMorningButton" type="button">Begin Morning Routine</button>
+            </div>
+          </div>
+        </section>
+
+        <section class="view routine-view" id="routineView" aria-labelledby="routineTitle">
+          <div class="progress-row">
+            <span id="routineKindLabel">Morning Routine</span>
+            <span id="progressText">1 of 8</span>
+          </div>
+          <div class="progress-track" aria-hidden="true">
+            <div class="progress-fill" id="progressFill"></div>
+          </div>
+          <article class="task-panel">
+            <p class="task-meta" id="taskTime">5 min</p>
+            <h1 id="routineTitle">Prayer</h1>
+            <p id="taskDescription">Start the day grounded before touching the rest of the dashboard.</p>
+          </article>
+          <div class="routine-actions">
+            <button class="secondary-button" id="skipTaskButton" type="button">Skip</button>
+            <button class="primary-button" id="completeTaskButton" type="button">Done / Next</button>
+          </div>
+        </section>
+
+        <section class="view completion-view" id="completionView" aria-labelledby="completionTitle">
+          <div class="completion-mark" aria-hidden="true">Done</div>
+          <h1 id="completionTitle">Routine complete</h1>
+          <p id="completionCopy">You are set for the next part of the day.</p>
+          <button class="primary-button" id="finishRoutineButton" type="button">Go to Dashboard</button>
+        </section>
+
+        <section class="view dashboard-view" id="dashboardView" aria-labelledby="dashboardTitle">
+          <div class="dashboard-hero">
+            <p class="soft-label" id="dashboardMode">Morning Dashboard</p>
+            <h1 id="dashboardTitle">Today at a glance</h1>
+            <p id="dashboardSummary">Keep the next move visible without turning the morning into inbox time.</p>
+          </div>
+
+          <div class="dashboard-grid">
+            <section class="panel">
+              <div class="panel-heading">
+                <h2>Next Up</h2>
+                <span id="countdownText">No event loaded</span>
+              </div>
+              <p class="placeholder-text">Calendar placeholder: first meeting, commute buffer, or leave-by time.</p>
+            </section>
+
+            <section class="panel">
+              <div class="panel-heading">
+                <h2>Top 3</h2>
+                <span>Editable later</span>
+              </div>
+              <ol class="priority-list">
+                <li>Choose today's primary outcome</li>
+                <li>Handle the earliest commitment</li>
+                <li>Protect one focused work block</li>
+              </ol>
+            </section>
+
+            <section class="panel compact-panel">
+              <h2>Markets</h2>
+              <p class="metric">Premarket</p>
+              <p class="placeholder-text">Market data placeholder.</p>
+            </section>
+
+            <section class="panel">
+              <div class="panel-heading">
+                <h2>Email</h2>
+                <span>Summary</span>
+              </div>
+              <p class="placeholder-text">Gmail summary placeholder for urgent messages and waiting replies.</p>
+            </section>
+
+            <section class="panel">
+              <div class="panel-heading">
+                <h2>Audio</h2>
+                <span>User started</span>
+              </div>
+              <button class="secondary-button full-width" id="spotifyButton" type="button">Open Morning Playlist</button>
+            </section>
+
+            <section class="panel">
+              <div class="panel-heading">
+                <h2>Notes</h2>
+                <span>Local</span>
+              </div>
+              <textarea id="notesInput" rows="4" placeholder="Capture reminders for later."></textarea>
+            </section>
+
+            <section class="panel">
+              <div class="panel-heading">
+                <h2>Options</h2>
+                <span>Dashboard only</span>
+              </div>
+              <div class="stacked-actions">
+                <button class="secondary-button full-width" id="openWakeButton" type="button">Set Wake Time</button>
+                <button class="secondary-button full-width" id="resetDayButton" type="button">Reset Morning Flow</button>
+              </div>
+            </section>
+
+          </div>
+        </section>
+
+        <section class="view settings-view" id="wakeView" aria-labelledby="wakeTitle">
+          <div class="dashboard-hero">
+            <p class="soft-label">Get Ready for Morning</p>
+            <h1 id="wakeTitle">Set tomorrow's wake time</h1>
+            <p>This saves your target wake time here and reminds you to set the real alarm in the iPhone Clock app.</p>
+          </div>
+          <form class="wake-form" id="wakeForm">
+            <label for="wakeTimeInput">Wake time</label>
+            <input id="wakeTimeInput" type="time" value="06:30">
+            <button class="primary-button" type="submit">Save Wake Time</button>
+          </form>
+          <p class="alarm-reminder" id="alarmReminder">After saving, set your iPhone alarm manually.</p>
+          <button class="secondary-button" id="backToDashboardButton" type="button">Back to Dashboard</button>
+        </section>
+      </main>
+    </div>
+
+    <script src="app.js" defer></script>
+  </body>
+</html>

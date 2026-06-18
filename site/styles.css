@@ -1,0 +1,885 @@
+:root {
+  color-scheme: light;
+  --bg: #eef7f4;
+  --surface: #ffffff;
+  --surface-soft: #f7fbf9;
+  --ink: #17211f;
+  --muted: #61716d;
+  --line: rgba(23, 33, 31, 0.12);
+  --accent: #0f8f83;
+  --accent-dark: #0b655e;
+  --gold: #e8b75a;
+  --blue: #6b8fb8;
+  --shadow: 0 18px 45px rgba(24, 50, 45, 0.12);
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  min-height: 100%;
+  background: var(--bg);
+}
+
+body {
+  min-height: 100%;
+  margin: 0;
+  color: var(--ink);
+  background: #fef9db;
+  overflow-x: hidden;
+}
+
+button,
+input,
+textarea {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+.app-shell {
+  width: min(100%, 520px);
+  min-height: 100svh;
+  margin: 0 auto;
+  padding: calc(20px + env(safe-area-inset-top)) 18px calc(28px + env(safe-area-inset-bottom));
+  position: relative;
+  z-index: 10;
+}
+
+.morning-scene,
+.morning-scene * {
+  pointer-events: none;
+}
+
+.morning-scene {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  background: linear-gradient(180deg, #feb8b0 0%, #fef9db 48%, #ceefe8 100%);
+}
+
+.scene-sky {
+  position: absolute;
+  inset: 0 0 36%;
+  overflow: hidden;
+  background: linear-gradient(180deg, #feb8b0 0%, #ffd6bd 42%, #fef9db 100%);
+}
+
+.scene-sky::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at 22% 22%, rgba(255, 255, 255, 0.55), transparent 16rem),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.22), transparent);
+}
+
+.scene-sun,
+.scene-moon {
+  position: absolute;
+  width: clamp(96px, 30vw, 180px);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  left: 50%;
+  bottom: -28px;
+  transform: translateX(-50%);
+}
+
+.scene-sun {
+  z-index: 2;
+  background: linear-gradient(180deg, #ffffff 0%, #fffbe8 100%);
+  box-shadow:
+    0 0 0 26px rgba(255, 252, 221, 0.18),
+    0 22px 80px rgba(241, 162, 98, 0.45);
+  animation: sun-breathe 7s ease-in-out infinite;
+}
+
+.scene-moon {
+  z-index: 2;
+  opacity: 0;
+  background: linear-gradient(180deg, #ffffff 0%, #fffbe8 100%);
+  box-shadow: 0 18px 70px rgba(255, 255, 255, 0.22);
+}
+
+.scene-stars {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  z-index: 2;
+}
+
+.star,
+.star::before,
+.star::after {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.9);
+}
+
+.star::before,
+.star::after {
+  content: "";
+}
+
+.star::before {
+  left: 44px;
+  top: 24px;
+  opacity: 0.7;
+}
+
+.star::after {
+  left: -34px;
+  top: 46px;
+  width: 3px;
+  height: 3px;
+}
+
+.star-one {
+  left: 18%;
+  top: 22%;
+}
+
+.star-two {
+  left: 64%;
+  top: 16%;
+}
+
+.star-three {
+  left: 78%;
+  top: 34%;
+}
+
+.star-four {
+  left: 35%;
+  top: 42%;
+}
+
+.star-five {
+  left: 52%;
+  top: 28%;
+}
+
+.cloud,
+.cloud::before,
+.cloud::after {
+  position: absolute;
+  z-index: 4;
+  background: rgba(255, 255, 255, 0.92);
+}
+
+.cloud {
+  width: clamp(68px, 19vw, 128px);
+  height: clamp(14px, 4vw, 24px);
+  border-radius: 999px;
+  animation: cloud-drift 5s ease-in-out infinite;
+}
+
+.cloud::before,
+.cloud::after {
+  content: "";
+  border-radius: 50%;
+}
+
+.cloud::before {
+  width: 38%;
+  aspect-ratio: 1;
+  left: 18%;
+  bottom: 26%;
+}
+
+.cloud::after {
+  width: 50%;
+  aspect-ratio: 1;
+  right: 12%;
+  bottom: 32%;
+}
+
+.cloud-one {
+  left: 8%;
+  top: 26%;
+}
+
+.cloud-two {
+  right: 7%;
+  top: 18%;
+  transform: scale(0.85);
+  animation-delay: 0.4s;
+}
+
+.cloud-three {
+  left: 58%;
+  top: 42%;
+  transform: scale(0.72);
+  animation-delay: 0.8s;
+}
+
+.bird,
+.bird::before,
+.bird::after {
+  position: absolute;
+  width: 18px;
+  height: 9px;
+  border: 2px solid #bb7074;
+  border-bottom: 0;
+  z-index: 5;
+}
+
+.bird {
+  border: 0;
+  animation: bird-hover 1.1s ease-in-out infinite;
+}
+
+.bird::before,
+.bird::after {
+  content: "";
+  top: 0;
+}
+
+.bird::before {
+  right: 16px;
+  border-left: 0;
+  border-top-right-radius: 18px;
+  transform-origin: bottom right;
+  animation: wing-left 1.1s ease-in-out infinite;
+}
+
+.bird::after {
+  left: 0;
+  border-right: 0;
+  border-top-left-radius: 18px;
+  transform-origin: bottom left;
+  animation: wing-right 1.1s ease-in-out infinite;
+}
+
+.bird-one {
+  right: 23%;
+  top: 29%;
+}
+
+.bird-two {
+  right: 16%;
+  top: 34%;
+  transform: scale(0.82);
+  animation-delay: 0.2s;
+}
+
+.bird-three {
+  right: 29%;
+  top: 38%;
+  transform: scale(0.7);
+  animation-delay: 0.4s;
+}
+
+.scene-mountains {
+  position: absolute;
+  left: -10%;
+  right: -10%;
+  bottom: 31%;
+  height: 22%;
+  z-index: 3;
+}
+
+.mountain,
+.mountain::before,
+.mountain::after {
+  position: absolute;
+  border-radius: 50% 50% 0 0;
+}
+
+.mountain::before,
+.mountain::after {
+  content: "";
+}
+
+.mountain-back {
+  left: 0;
+  bottom: 0;
+  width: 52%;
+  height: 72%;
+  background: #fec6b9;
+}
+
+.mountain-back::before {
+  left: 44%;
+  bottom: 0;
+  width: 62%;
+  height: 86%;
+  background: inherit;
+}
+
+.mountain-mid {
+  left: 24%;
+  bottom: 0;
+  width: 55%;
+  height: 86%;
+  background: #fee1cb;
+}
+
+.mountain-mid::before {
+  left: -34%;
+  bottom: 0;
+  width: 60%;
+  height: 74%;
+  background: inherit;
+}
+
+.mountain-front {
+  right: -4%;
+  bottom: 0;
+  width: 58%;
+  height: 64%;
+  background: #fffcdd;
+}
+
+.mountain-front::before {
+  left: -46%;
+  bottom: 0;
+  width: 72%;
+  height: 82%;
+  background: inherit;
+}
+
+.scene-water {
+  position: absolute;
+  left: -8%;
+  right: -8%;
+  bottom: 0;
+  height: 36%;
+  z-index: 4;
+  background: #ceefe8;
+  transform-origin: top center;
+  animation: water-top 4s ease-in-out infinite;
+}
+
+.scene-water::before,
+.scene-water::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  width: 100%;
+  bottom: 0;
+}
+
+.scene-water::before {
+  height: 74%;
+  background: #baeced;
+  animation: water-middle 3.4s ease-in-out infinite;
+}
+
+.scene-water::after {
+  height: 48%;
+  background: #ace6f1;
+  animation: water-bottom 2.8s ease-in-out infinite;
+}
+
+.boat {
+  position: absolute;
+  z-index: 6;
+  left: 67%;
+  top: -3px;
+  width: 52px;
+  height: 0;
+  border-top: 8px solid #bb7074;
+  border-left: 11px solid transparent;
+  border-right: 11px solid transparent;
+  animation: boat-rock 4s ease-in-out infinite;
+}
+
+.boat::before,
+.boat::after {
+  content: "";
+  position: absolute;
+  width: 0;
+  height: 0;
+  bottom: 8px;
+  border: 0 solid transparent;
+}
+
+.boat::before {
+  right: 16px;
+  border-left-width: 16px;
+  border-bottom: 32px solid #bb7074;
+}
+
+.boat::after {
+  right: -7px;
+  border-right-width: 21px;
+  border-bottom: 50px solid #bb7074;
+}
+
+body.is-night {
+  color: #f8fbff;
+  background: #4c3f6d;
+}
+
+body.is-night .morning-scene {
+  background: linear-gradient(180deg, #4c3f6d 0%, #6c62bb 48%, #788cc9 100%);
+}
+
+body.is-night .scene-sky {
+  background: linear-gradient(180deg, #4c3f6d 0%, #6c62bb 48%, #93b1ed 100%);
+}
+
+body.is-night .scene-sky::after {
+  background: linear-gradient(180deg, rgba(15, 18, 45, 0.16), transparent);
+}
+
+body.is-night .scene-sun,
+body.is-night .cloud,
+body.is-night .bird {
+  opacity: 0;
+}
+
+body.is-night .scene-moon {
+  opacity: 0.42;
+}
+
+body.is-night .scene-stars {
+  opacity: 1;
+}
+
+body.is-night .mountain-back,
+body.is-night .mountain-back::before {
+  background: #7980c8;
+}
+
+body.is-night .mountain-mid,
+body.is-night .mountain-mid::before {
+  background: #6154a4;
+}
+
+body.is-night .mountain-front,
+body.is-night .mountain-front::before {
+  background: #614da2;
+}
+
+body.is-night .scene-water {
+  background: #8da6e6;
+}
+
+body.is-night .scene-water::before {
+  background: #8299d8;
+}
+
+body.is-night .scene-water::after {
+  background: #788cc9;
+}
+
+.eyebrow,
+.soft-label,
+.task-meta {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0;
+  text-transform: uppercase;
+}
+
+.view {
+  display: none;
+  min-height: calc(100svh - 174px);
+}
+
+.view.is-active {
+  display: flex;
+}
+
+.launch-content,
+.completion-view,
+.settings-view,
+.routine-view,
+.dashboard-view {
+  flex-direction: column;
+}
+
+#launchView {
+  min-height: calc(100svh - 58px - env(safe-area-inset-top) - env(safe-area-inset-bottom));
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.launch-content {
+  display: flex;
+  align-items: center;
+  text-align: center;
+  gap: 12px;
+  width: 100%;
+  padding-top: 18svh;
+}
+
+h1,
+h2,
+p {
+  overflow-wrap: anywhere;
+}
+
+h1 {
+  margin: 0;
+  font-size: clamp(2.35rem, 14vw, 4.3rem);
+  line-height: 0.94;
+  letter-spacing: 0;
+}
+
+h2 {
+  margin: 0;
+  font-size: 1rem;
+  line-height: 1.2;
+  letter-spacing: 0;
+}
+
+.clock {
+  margin: 0;
+  font-size: clamp(2.75rem, 15vw, 5.2rem);
+  line-height: 0.9;
+  font-weight: 800;
+  letter-spacing: 0;
+}
+
+#launchTitle {
+  max-width: 100%;
+  white-space: nowrap;
+  overflow-wrap: normal;
+  font-size: clamp(2.45rem, 11.5vw, 4.2rem);
+}
+
+.focus-line,
+.dashboard-hero p,
+.placeholder-text,
+.alarm-reminder {
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.55;
+}
+
+.primary-actions,
+.routine-actions {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 10px;
+  margin-top: 12px;
+}
+
+.primary-button,
+.secondary-button {
+  min-height: 54px;
+  border: 0;
+  border-radius: 8px;
+  padding: 0 18px;
+  font-weight: 800;
+}
+
+.primary-button {
+  color: white;
+  background: linear-gradient(135deg, var(--accent), var(--accent-dark));
+  box-shadow: 0 14px 30px rgba(15, 143, 131, 0.28);
+}
+
+.secondary-button {
+  color: var(--ink);
+  background: rgba(255, 255, 255, 0.78);
+  border: 1px solid var(--line);
+}
+
+.routine-view {
+  display: none;
+  gap: 16px;
+  padding-top: 26px;
+}
+
+.progress-row,
+.panel-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  color: var(--muted);
+  font-size: 0.82rem;
+  font-weight: 700;
+}
+
+.progress-track {
+  height: 8px;
+  overflow: hidden;
+  border-radius: 999px;
+  background: rgba(23, 33, 31, 0.1);
+}
+
+.progress-fill {
+  width: 12.5%;
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, var(--accent), var(--gold));
+  transition: width 220ms ease;
+}
+
+.task-panel {
+  min-height: 48svh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 16px;
+}
+
+.task-panel h1 {
+  font-size: clamp(2.65rem, 15vw, 4.8rem);
+}
+
+.task-panel p:last-child {
+  margin: 0;
+  color: var(--muted);
+  font-size: 1.06rem;
+  line-height: 1.55;
+}
+
+.routine-actions {
+  grid-template-columns: 0.9fr 1.4fr;
+  margin-top: auto;
+}
+
+.completion-view {
+  align-items: flex-start;
+  justify-content: center;
+  gap: 16px;
+}
+
+.completion-mark {
+  width: 74px;
+  height: 74px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  color: white;
+  background: var(--accent);
+  font-size: 0.9rem;
+  font-weight: 900;
+  box-shadow: var(--shadow);
+}
+
+.completion-view p {
+  margin: 0 0 12px;
+  color: var(--muted);
+}
+
+.dashboard-view {
+  display: none;
+  gap: 16px;
+  padding-top: 12px;
+}
+
+.dashboard-hero {
+  display: grid;
+  gap: 10px;
+  padding: 18px 0 6px;
+}
+
+.dashboard-hero h1 {
+  font-size: clamp(2rem, 11vw, 3.5rem);
+}
+
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 12px;
+}
+
+.panel {
+  display: grid;
+  gap: 12px;
+  padding: 16px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.76);
+  box-shadow: 0 12px 28px rgba(24, 50, 45, 0.08);
+}
+
+.compact-panel {
+  grid-template-columns: 1fr;
+}
+
+.metric {
+  margin: 0;
+  font-size: 1.55rem;
+  font-weight: 850;
+}
+
+.priority-list {
+  margin: 0;
+  padding-left: 20px;
+  color: var(--muted);
+  line-height: 1.6;
+}
+
+.full-width {
+  width: 100%;
+}
+
+.stacked-actions {
+  display: grid;
+  gap: 10px;
+}
+
+textarea,
+input[type="time"] {
+  width: 100%;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--surface-soft);
+  color: var(--ink);
+}
+
+textarea {
+  min-height: 96px;
+  padding: 12px;
+  resize: vertical;
+}
+
+input[type="time"] {
+  min-height: 54px;
+  padding: 0 12px;
+  font-size: 1.2rem;
+  font-weight: 800;
+}
+
+.settings-view {
+  display: none;
+  gap: 18px;
+  padding-top: 18px;
+}
+
+.wake-form {
+  display: grid;
+  gap: 10px;
+}
+
+.wake-form label {
+  color: var(--muted);
+  font-weight: 800;
+}
+
+@keyframes sun-breathe {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.045);
+  }
+}
+
+@keyframes cloud-drift {
+  0%,
+  100% {
+    translate: 0 0;
+  }
+  50% {
+    translate: 3px -3px;
+  }
+}
+
+@keyframes bird-hover {
+  0%,
+  100% {
+    translate: 0 0;
+  }
+  50% {
+    translate: 2px -4px;
+  }
+}
+
+@keyframes wing-left {
+  0%,
+  100% {
+    rotate: 0deg;
+  }
+  50% {
+    rotate: -12deg;
+  }
+}
+
+@keyframes wing-right {
+  0%,
+  100% {
+    rotate: 0deg;
+  }
+  50% {
+    rotate: 12deg;
+  }
+}
+
+@keyframes water-top {
+  0%,
+  100% {
+    rotate: 0deg;
+  }
+  50% {
+    rotate: 0.8deg;
+  }
+}
+
+@keyframes water-middle {
+  0%,
+  100% {
+    height: 74%;
+    rotate: 0deg;
+  }
+  50% {
+    height: 77%;
+    rotate: 1.2deg;
+  }
+}
+
+@keyframes water-bottom {
+  0%,
+  100% {
+    height: 48%;
+    rotate: 0deg;
+  }
+  50% {
+    height: 51%;
+    rotate: -1.4deg;
+  }
+}
+
+@keyframes boat-rock {
+  0%,
+  100% {
+    transform: rotate(1deg) translate(0, 0);
+  }
+  50% {
+    transform: rotate(-1deg) translate(-2px, -2px);
+  }
+}
+
+@media (min-width: 760px) {
+  .app-shell {
+    width: min(100%, 920px);
+    padding-inline: 28px;
+  }
+
+  .launch-content,
+  .routine-view,
+  .completion-view,
+  .settings-view {
+    width: min(100%, 560px);
+    margin-inline: auto;
+  }
+
+  .dashboard-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .panel:first-child,
+  .panel:nth-child(2),
+  .panel:nth-child(7) {
+    grid-column: 1 / -1;
+  }
+}

@@ -1,0 +1,151 @@
+
+# Project Brief: Morning Flow Web App
+
+## Goal
+
+Build a mobile-first personal website/PWA that helps me move through my morning and evening routines with less friction. The site should feel like a lightweight app on iPhone Safari/Home Screen, but it should not require building a native iOS app.
+
+The core idea is:
+
+- My iPhone alarm wakes me up.
+- I open the Morning Flow website from my Home Screen.
+- The site greets me with a polished morning launch screen.
+- I tap “Begin Morning Routine.”
+- The site walks me through one full-screen task at a time.
+- After finishing the routine, it opens a simple daily dashboard.
+- As the day progresses, the dashboard changes based on time.
+- In the evening, the site prompts me to start an evening routine and prepare for tomorrow.
+
+## Important Platform Constraint
+
+This should be built as a responsive website / Progressive Web App, optimized for iPhone Safari.
+
+Do not assume the website can:
+- force the phone to stay locked,
+- force full-screen mode in normal Safari,
+- reliably wake me up with an alarm,
+- automatically open itself in the morning,
+- or play audio without user interaction.
+
+Instead, design around:
+- iPhone Clock app for the real alarm,
+- Home Screen PWA behavior for app-like use,
+- user-tapped buttons for starting routines and Spotify/music.
+
+## MVP Features
+
+### 1. Morning Launch Screen
+
+When opened in the morning, show a polished launch screen with:
+- “Good morning”
+- current date
+- large clock
+- weather placeholder
+- simple animation or visual background
+- button: “Begin Morning Routine”
+- optional small line showing today’s focus or verse
+
+### 2. Guided Morning Routine
+
+After clicking “Begin Morning Routine,” open a full-screen routine mode.
+
+Each task should display as one screen/card at a time.
+
+Example tasks:
+1. Prayer
+2. Bible / quiet time
+3. Make bed
+4. Brush teeth
+5. Get dressed
+6. Check calendar
+7. Review top priorities
+8. Start Spotify morning playlist / podcast
+
+Each task screen should include:
+- task title
+- short description
+- optional estimated time
+- “Done / Next” button
+- “Skip” button
+- progress indicator, such as “3 of 8”
+- clean full-screen mobile layout
+
+When all tasks are complete, show a completion screen and then move into the daily dashboard.
+
+### 3. Daily Dashboard
+
+After the morning routine, show a simple dashboard with sections for:
+- calendar events
+- weather
+- email summary placeholder
+- stock market / premarket movement placeholder
+- Spotify morning queue placeholder
+- today’s top 3 priorities
+- notes/reminders
+- leave-by time or next event countdown
+
+### 4. Time-Based Website Modes
+
+The site should change based on time of day.
+
+Suggested modes:
+- Morning Launch
+- Morning Dashboard
+- Midday Dashboard
+- Afternoon Dashboard
+- Evening Prompt
+- Evening Routine
+- Night / Tomorrow Prep
+
+### 5. Evening Routine
+
+In the evening, show a prominent prompt:
+“Start Evening Routine”
+
+Example evening tasks:
+1. Review tomorrow’s calendar
+2. Choose wake-up time
+3. Set iPhone alarm
+4. Pack bag / prepare essentials
+5. Pick clothes
+6. Clean/reset room
+7. Prayer / journal
+8. Get ready for bed
+
+### 6. Morning Setup / Wake Time
+
+Add an evening “Get Ready for Morning” step where I can choose a wake time.
+
+The site should not claim it can wake me up by itself. Instead, remind the user to set their iPhone alarm.
+
+## Future Integrations
+
+- Google Calendar
+- Gmail summaries
+- Spotify podcast and playlist integration
+- Weather API
+- Market data
+- Push notifications (reminders only)
+
+## Design Direction
+
+Design should be:
+- mobile-first
+- clean
+- calm
+- premium
+- minimal
+- focused
+- not overwhelming
+
+The guided routine experience is the most important feature.
+
+## MVP Success Criteria
+
+1. Open from iPhone Home Screen.
+2. See a polished morning screen.
+3. Complete guided morning routine.
+4. Land on a useful dashboard.
+5. Receive evening prompt.
+6. Complete evening routine.
+7. Save wake time for tomorrow.
